@@ -23,5 +23,5 @@ export function HomePlatonicBackground() {
     window.addEventListener("scroll", onScroll, { passive: true })
     return () => window.removeEventListener("scroll", onScroll)
   }, [])
-  return <><div className="pointer-events-none fixed inset-0 z-0 bg-[var(--void)]" /><div className="pointer-events-none fixed inset-0 z-0 opacity-75"><PlatonicScene active={solids[index]} heroEarth={index === 0} height={typeof window === "undefined" ? 800 : window.innerHeight} /></div></>
+  return <><div className="pointer-events-none fixed inset-0 z-0 bg-[var(--void)]" /><div className="pointer-events-none fixed inset-0 z-0 opacity-75"><PlatonicScene active={solids[index]} heroEarth={index === 0} height="100%" /></div></>
 }

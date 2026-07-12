@@ -8,5 +8,5 @@ import { ConsultationCTA } from "@/components/consultation-cta"
 export const metadata: Metadata = { title: "wholebody.earth — Quincunx", description: "A network for sovereign creators. Five bodies, one living system." }
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
-  return <html lang="en"><body><CartProvider><Navigation /><main className="min-h-screen pt-[7.2rem]">{children}<ConsultationCTA/></main><Footer /></CartProvider></body></html>
+  return <html lang="en"><body className="flex min-h-screen flex-col"><CartProvider><Navigation /><main className="flex-1 pt-[7.2rem]">{children}<ConsultationCTA/></main><Footer /></CartProvider></body></html>
 }

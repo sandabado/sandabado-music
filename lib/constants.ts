@@ -31,3 +31,11 @@ export const NAV_LINKS = [
   { href: "/events", label: "Calendar" },
   { href: "/store", label: "Store" },
 ]
+
+export const FOOTER_PILLARS = [
+  { href: "/pillars/presence", label: "Presence", icon: "🜂" },
+  { href: "/pillars/press", label: "Press", icon: "🜁" },
+  { href: "/pillars/studios", label: "Studios", icon: "🜄" },
+  { href: "/pillars/foundation", label: "Foundation", icon: "🜃" },
+  { href: "/pillars/guardian", label: "Guardian", icon: "☉" },
+]
