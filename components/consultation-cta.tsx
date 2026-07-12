@@ -12,8 +12,13 @@ export function ConsultationCTA() {
       <h2 className="mt-4 font-[family-name:var(--font-display)] text-3xl text-[var(--bone)] sm:text-4xl">Discover your Whole Body</h2>
       <p className="mx-auto mt-5 max-w-xl text-base leading-7 text-[var(--ghost)]">Jesse synthesizes your birth chart, business architecture, and legacy design into one actionable plan.</p>
 
-      <div className="mx-auto mt-10 max-w-md">
-        <article className="hud-frame relative flex flex-col overflow-hidden border-2 border-[var(--halo)] bg-[var(--steel)] p-6 text-left shadow-[0_0_38px_rgba(201,162,39,.2),inset_0_0_32px_rgba(201,162,39,.06)]">
+      <div className="mx-auto mt-10 grid max-w-3xl gap-6 text-left md:grid-cols-2">
+        <article className="hud-frame relative flex flex-col overflow-hidden border border-[var(--mercury)] bg-[var(--void)]/82 p-6">
+          <div className="relative"><p className="font-[family-name:var(--font-mono)] text-[9px] uppercase tracking-[.18em] text-[#FF6FAE]">First contact</p><h3 className="mt-2 font-[family-name:var(--font-display)] text-xl text-[var(--bone)]">Free Consultation with Jesse</h3><p className="mt-3 border-b border-[var(--mercury)] pb-4 font-[family-name:var(--font-mono)] text-xs text-[var(--ghost)]">20 minutes · Free</p></div>
+          <p className="relative my-6 flex-1 text-sm leading-6 text-[var(--ghost)]">A focused first conversation to name what is calling you and see whether a full Whole Body consultation is the right next step.</p>
+          <Link href={bookingUrl} target="_blank" rel="noopener noreferrer" className="relative block w-full border border-[#FF6FAE]/70 px-4 py-3 text-center font-[family-name:var(--font-mono)] text-xs uppercase tracking-[.1em] text-[#FF6FAE] transition hover:bg-[#FF6FAE] hover:text-[var(--void)]">Book Your Free 20 Minutes</Link>
+        </article>
+        <article className="hud-frame relative flex flex-col overflow-hidden border-2 border-[var(--halo)] bg-[var(--steel)] p-6 shadow-[0_0_38px_rgba(201,162,39,.2),inset_0_0_32px_rgba(201,162,39,.06)]">
           <div className="pointer-events-none absolute inset-0 bg-gradient-to-br from-[var(--halo)]/10 via-transparent to-[var(--plasma)]/5"/>
           <div className="relative flex items-start justify-between gap-4"><div><p className="font-[family-name:var(--font-mono)] text-[9px] uppercase tracking-[.18em] text-[var(--halo)]">Sovereign Architect</p><h3 className="glow-halo mt-2 font-[family-name:var(--font-display)] text-xl text-[var(--halo)]">Consultation with Jesse</h3></div><span className="font-[family-name:var(--font-mono)] text-lg text-[var(--halo)]">$333</span></div>
           <p className="relative mt-3 border-b border-[var(--halo)]/30 pb-4 font-[family-name:var(--font-mono)] text-xs text-[var(--halo-dim)]">90 minutes</p>
