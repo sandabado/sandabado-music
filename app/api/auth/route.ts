@@ -1,0 +1,4 @@
+import { NextResponse } from "next/server"
+import { supabaseRequest } from "@/lib/supabase"
+
+export async function POST(request: Request) { try { const { action,email,password,name } = await request.json() as { action?:string; email?:string; password?:string; name?:string }; if (!email || !password || !["login","register"].includes(action || "")) return NextResponse.json({ error:"Email, password, and a valid action are required." }, { status:400 }); const path = action === "login" ? "/auth/v1/token?grant_type=password" : "/auth/v1/signup"; const result = await supabaseRequest<Record<string, unknown>>(path, { method:"POST", body:JSON.stringify(action === "login" ? { email,password } : { email,password,data:{ full_name:name } }) }); return NextResponse.json(result) } catch { return NextResponse.json({ error:"Unable to authenticate. Check your Supabase configuration and credentials." }, { status:401 }) } }

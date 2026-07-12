@@ -1,0 +1,15 @@
+"use client"
+
+import { useEffect, useState } from "react"
+import { formatEventDate, type WholeBodyEvent } from "@/lib/events"
+import { PILLAR_BY_ID, type PillarId } from "@/lib/constants"
+
+export function EventCalendar() {
+  const [events, setEvents] = useState<WholeBodyEvent[]>([]); const [status, setStatus] = useState("Loading gatherings…")
+  useEffect(() => { fetch("/api/events").then(async (response) => { if (!response.ok) throw new Error(); return response.json() }).then((payload) => { setEvents(payload.events || []); setStatus("") }).catch(() => setStatus("The calendar is being configured. Check back shortly.")) }, [])
+  if (status) return <p className="py-12 text-center font-[family-name:var(--font-mono)] text-xs tracking-wider text-[var(--ghost)]">{status}</p>
+  if (!events.length) return <p className="py-12 text-center text-[var(--ghost)]">No gatherings are scheduled yet. The next invitation is forming.</p>
+  return <div className="space-y-4">{events.map((event) => { const pillar = event.pillar === "all" ? null : PILLAR_BY_ID[event.pillar as PillarId]; return <article key={event.id} className="hud-frame grid gap-5 border border-[var(--mercury)] bg-[var(--steel)] p-6 md:grid-cols-[1fr_auto]"><div><p className="font-[family-name:var(--font-mono)] text-[10px] tracking-[.16em] uppercase" style={{ color:pillar?.color || "var(--halo)" }}>{pillar ? `${pillar.symbol} ${pillar.name}` : "☉ All pillars"}</p><h2 className="mt-3 font-[family-name:var(--font-display)] text-2xl">{event.title}</h2><p className="mt-3 max-w-2xl text-sm leading-6 text-[var(--ghost)]">{event.description}</p><p className="mt-4 font-[family-name:var(--font-mono)] text-[10px] text-[var(--halo-dim)]">{formatEventDate(event.start_time)} · {event.format} {event.location ? `· ${event.location}` : ""}</p></div><RsvpButton event={event}/></article> })}</div>
+}
+
+function RsvpButton({ event }: { event: WholeBodyEvent }) { const [loading,setLoading] = useState(false); const [message,setMessage] = useState<string | null>(null); async function rsvp() { const token = localStorage.getItem("wb-access-token"); if (!token) { location.assign("/login"); return } setLoading(true); try { const response = await fetch("/api/rsvp", { method:"POST", headers:{"Content-Type":"application/json", Authorization:`Bearer ${token}`}, body:JSON.stringify({ eventId:event.id }) }); const payload = await response.json(); if (!response.ok) throw new Error(payload.error); if (payload.checkoutUrl) location.assign(payload.checkoutUrl); else setMessage("You’re confirmed. A note is on its way.") } catch (error) { setMessage(error instanceof Error ? error.message : "Unable to RSVP.") } finally { setLoading(false) } } return <div className="min-w-40 self-center text-center"><button onClick={rsvp} disabled={loading} className="w-full bg-[var(--halo)] px-4 py-3 font-[family-name:var(--font-display)] text-sm text-[var(--void)] disabled:opacity-60">{loading ? "One moment…" : event.price_cents ? `Reserve · $${(event.price_cents / 100).toFixed(0)}` : "RSVP free"}</button>{message ? <p className="mt-2 text-xs text-[var(--flux)]">{message}</p> : null}</div> }

@@ -1,0 +1,10 @@
+"use client"
+
+import { motion } from "framer-motion"
+import type { BodyScore } from "@/lib/reading-engine"
+
+const positions: Record<string, { left: string; top: string }> = { Mental:{left:"50%",top:"8%"}, Physical:{left:"8%",top:"50%"}, Emotional:{left:"92%",top:"50%"}, Spiritual:{left:"50%",top:"92%"} }
+
+export function QuincunxDisplay({ scores, guardian }: { scores: BodyScore[]; guardian: boolean }) {
+  return <div className="relative mx-auto aspect-square w-full max-w-md"><svg className="absolute inset-0 h-full w-full" viewBox="0 0 100 100" aria-hidden><path d="M50 8V92M8 50H92" stroke="#2A2A38" strokeWidth=".35"/><path d="M50 8L50 50 8 50M50 50H92M50 50V92" stroke="#8B7355" strokeWidth=".2" strokeDasharray="1 1"/></svg>{scores.map((score, index) => { const position = positions[score.body]; const size = 25 + score.percentage * .48; return <motion.div key={score.body} initial={{ opacity:0, scale:0 }} animate={{ opacity:1, scale:1 }} transition={{ delay:index*.1 }} className="absolute flex -translate-x-1/2 -translate-y-1/2 flex-col items-center" style={position}><div className="grid place-items-center rounded-full border-2 text-[10px] font-semibold" style={{ width:size, height:size, borderColor:score.color, color:score.color, backgroundColor:`${score.color}20`, boxShadow: guardian || score === scores[0] ? `0 0 22px ${score.color}80` : undefined }}>{score.percentage}%</div><span className="mt-1 font-[family-name:var(--font-mono)] text-[9px] tracking-wider uppercase" style={{ color:score.color }}>{score.pillarId}</span></motion.div>})}<div className="absolute left-1/2 top-1/2 flex -translate-x-1/2 -translate-y-1/2 flex-col items-center"><div className={`grid place-items-center rounded-full ${guardian ? "size-14 border-2 border-[var(--ether)] bg-[var(--ether)]/20 shadow-[0_0_30px_rgba(109,74,255,.55)]" : "size-6 border border-[var(--ether)]/60"}`}><span className="text-[var(--ether)]">{guardian ? "☉" : ""}</span></div>{guardian ? <span className="mt-1 font-[family-name:var(--font-mono)] text-[9px] tracking-wider uppercase text-[var(--ether)]">Guardian</span> : null}</div></div>
+}

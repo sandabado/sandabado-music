@@ -1,0 +1,22 @@
+@import url("https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap");
+@import "tailwindcss";
+
+:root { --void:#050505; --carbon:#0A0A0F; --steel:#12121A; --mercury:#2A2A38; --plasma:#B026FF; --flux:#00FFC2; --halo:#C9A227; --halo-dim:#8B7355; --bone:#EDEDED; --ghost:#8888A0; --fire:#C2542D; --air:#D4AF37; --water:#2BA8A0; --earth:#4A6741; --ether:#6D4AFF; --font-display:"Cinzel",serif; --font-body:"Inter",ui-sans-serif,system-ui,sans-serif; --font-mono:"JetBrains Mono",ui-monospace,SFMono-Regular,monospace; }
+* { border-color: var(--mercury); }
+html { background: var(--void); scroll-behavior: smooth; }
+body { background: var(--void); color: var(--bone); font-family:var(--font-body); }
+.home-gradient-flow { background:linear-gradient(180deg,rgba(5,5,5,.44) 0%,rgba(5,5,5,.3) 14%,rgba(194,84,45,.16) 29%,rgba(212,175,55,.16) 43%,rgba(43,168,160,.17) 57%,rgba(74,103,65,.18) 71%,rgba(109,74,255,.2) 85%,rgba(5,5,5,.52) 100%); }
+::selection { background: var(--halo); color: var(--void); }
+.grid-bg { background-image: linear-gradient(rgb(201 162 39 / 3%) 1px, transparent 1px), linear-gradient(90deg, rgb(201 162 39 / 3%) 1px, transparent 1px); background-size: 40px 40px; }
+.scanlines::before { content:""; position:absolute; inset:0; pointer-events:none; background:repeating-linear-gradient(0deg,transparent,transparent 2px,rgb(201 162 39 / 1.5%) 2px,rgb(201 162 39 / 1.5%) 4px); }
+.hud-frame { position:relative; }
+.hud-frame::before,.hud-frame::after { content:""; position:absolute; width:12px; height:12px; border-color:var(--halo); opacity:.5; pointer-events:none; }
+.hud-frame::before { top:0; left:0; border-top:1px solid; border-left:1px solid; }.hud-frame::after { right:0; bottom:0; border-right:1px solid; border-bottom:1px solid; }
+.glow-halo { text-shadow:0 0 16px rgb(201 162 39 / 58%); }
+.pulse-dot { display:inline-block; width:7px; height:7px; border-radius:999px; background:var(--flux); box-shadow:0 0 9px var(--flux); animation:pulse 2s ease-in-out infinite; }
+@keyframes pulse { 50% { opacity:.38; box-shadow:0 0 2px var(--flux); } }
+.cosmic-star-field { overflow:hidden; background-color:var(--void); background-image:radial-gradient(circle at 19% 23%,rgb(237 237 237 / 82%) 0 1px,transparent 1.7px),radial-gradient(circle at 67% 18%,rgb(201 162 39 / 68%) 0 1px,transparent 1.8px),radial-gradient(circle at 41% 72%,rgb(109 74 255 / 62%) 0 1px,transparent 1.7px),radial-gradient(circle at 83% 62%,rgb(237 237 237 / 50%) 0 .8px,transparent 1.6px),radial-gradient(circle at 11% 87%,rgb(201 162 39 / 48%) 0 .8px,transparent 1.5px); background-size:173px 173px,257px 257px,211px 211px,137px 137px,307px 307px; animation:starfield-drift 140s ease-in-out infinite alternate; }
+.cosmic-star-field::before { position:absolute; inset:-20%; content:""; background-image:radial-gradient(circle at 22% 18%,rgb(237 237 237 / 62%) 0 1px,transparent 1.8px),radial-gradient(circle at 73% 36%,rgb(109 74 255 / 58%) 0 1px,transparent 1.8px),radial-gradient(circle at 45% 78%,rgb(201 162 39 / 62%) 0 1px,transparent 1.8px); background-size:239px 239px,317px 317px,389px 389px; opacity:.38; animation:starfield-orbit 114s linear infinite; }
+@keyframes starfield-drift { from { background-position:0 0,0 0,0 0,0 0,0 0; } to { background-position:24px -18px,-32px 22px,17px 30px,-22px -14px,36px -27px; } }
+@keyframes starfield-orbit { to { transform:rotate(360deg) scale(1.12); } }
+@media (prefers-reduced-motion: reduce) { *,*::before,*::after { animation-duration:0.01ms!important; animation-iteration-count:1!important; scroll-behavior:auto!important; transition-duration:0.01ms!important; } }
