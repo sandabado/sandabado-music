@@ -14,7 +14,7 @@ type CartContextValue = {
 }
 
 const CartContext = createContext<CartContextValue | null>(null)
-const CART_KEY = "wholebody-cart"
+const CART_KEY = "sandabado-cart"
 
 export function CartProvider({ children }: { children: ReactNode }) {
   const [items, setItems] = useState<CartItem[]>([])

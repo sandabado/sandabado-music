@@ -1,20 +1,15 @@
-# wholebodyearth-site
+# Sandābādo — ∞ LOVE
 
-The Quincunx build for wholebody.earth: natal-chart readings, five pillar experiences, Supabase member access, and Stripe-backed event RSVPs.
+The Sandābādo music portal: album previews, the Whole Body Gathering, direct-to-fan store, contact, and release-list signup.
 
-## Run locally
+## Local setup
 
-1. Copy `.env.example` to `.env.local` and enter your Supabase, Swiss Ephemeris, and Stripe values.
-2. In Supabase SQL Editor, run `supabase/migrations/001_quincunx_schema.sql`.
-3. Run the Swiss Ephemeris service configured as `SWISSEPH_API_URL`.
-4. Run `npm install`, then `npm run dev`.
+```bash
+npm install
+cp .env.example .env.local
+npm run dev
+```
 
-The reading endpoint deliberately fails safely until `SWISSEPH_API_URL` is available. RSVP payments fail safely until Stripe is configured. Free RSVPs use Supabase directly.
+Add 30-second MP3 previews as `public/assets/01-preview.mp3` through `13-preview.mp3`. Configure the checkout, mail, and mailing-list values in `.env.local` before deploying.
 
-## Stripe webhook
-
-Send `checkout.session.completed` to `/api/webhook/stripe` and set `STRIPE_WEBHOOK_SECRET`. The handler verifies the signature before confirming the pending RSVP.
-
-## Security notes
-
-Never expose `SUPABASE_SERVICE_ROLE_KEY` to the browser. It is only used in the server-side Stripe webhook to update a confirmed RSVP.
+Checkout uses Stripe-hosted Checkout Sessions and validates every cart item and price on the server. Use a restricted Stripe key in production.
