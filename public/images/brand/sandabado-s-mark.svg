@@ -3,23 +3,30 @@
   <desc id="description">A fluid, hand-drawn S woven around a slender central spine with a separate center circle.</desc>
   <defs>
     <linearGradient id="mark-gradient" x1=".12" y1=".08" x2=".86" y2=".92">
-      <stop offset="0" stop-color="#fff8df"/>
-      <stop offset=".38" stop-color="#e8c755"/>
-      <stop offset=".7" stop-color="#cfa6ff"/>
-      <stop offset="1" stop-color="#f4cf67"/>
-      <animate attributeName="x1" values=".12;.28;.12" dur="9s" repeatCount="indefinite"/>
-      <animate attributeName="y2" values=".92;.72;.92" dur="9s" repeatCount="indefinite"/>
+      <stop offset="0" stop-color="#f7f0ff"/>
+      <stop offset=".3" stop-color="#d9baff"/>
+      <stop offset=".6" stop-color="#a16bd5"/>
+      <stop offset=".82" stop-color="#69358d"/>
+      <stop offset="1" stop-color="#351647"/>
+      <animate attributeName="x1" values=".08;.74;.08" dur="7.5s" repeatCount="indefinite"/>
+      <animate attributeName="y1" values=".06;.34;.06" dur="7.5s" repeatCount="indefinite"/>
+      <animate attributeName="x2" values=".92;.26;.92" dur="7.5s" repeatCount="indefinite"/>
+      <animate attributeName="y2" values=".94;.68;.94" dur="7.5s" repeatCount="indefinite"/>
     </linearGradient>
     <filter id="fluid-glow" x="-70%" y="-55%" width="240%" height="210%" color-interpolation-filters="sRGB">
       <feTurbulence type="fractalNoise" baseFrequency=".008 .019" numOctaves="2" seed="7" result="flow">
         <animate attributeName="baseFrequency" values=".008 .019;.012 .014;.007 .021;.008 .019" dur="10s" repeatCount="indefinite"/>
       </feTurbulence>
       <feDisplacementMap in="SourceGraphic" in2="flow" scale="2.8" xChannelSelector="R" yChannelSelector="B" result="moved"/>
+      <feGaussianBlur in="moved" stdDeviation="12" result="deep-blur"/>
+      <feFlood flood-color="#351247" flood-opacity=".72" result="deep-glow-color"/>
+      <feComposite in="deep-glow-color" in2="deep-blur" operator="in" result="deep-glow"/>
       <feGaussianBlur in="moved" stdDeviation="5.5" result="blur"/>
-      <feFlood flood-color="#d9b6ff" flood-opacity=".78" result="glow-color"/>
+      <feFlood flood-color="#b77aeb" flood-opacity=".82" result="glow-color"/>
       <feComposite in="glow-color" in2="blur" operator="in" result="colored-glow"/>
       <feGaussianBlur in="moved" stdDeviation="1.1" result="soft-edge"/>
       <feMerge>
+        <feMergeNode in="deep-glow"/>
         <feMergeNode in="colored-glow"/>
         <feMergeNode in="soft-edge"/>
         <feMergeNode in="moved"/>
@@ -36,13 +43,13 @@
   <style>
     .mark-breathe{transform-box:view-box;transform-origin:120px 150px;animation:mark-breathe 8s ease-in-out infinite}
     .mark-spine{stroke-dasharray:274 18;animation:spine-flow 7s ease-in-out infinite}
-    .mark-highlight{stroke-dasharray:24 90;animation:highlight-flow 5.5s linear infinite}
+    .mark-flow{stroke-dasharray:7 93;animation:ribbon-flow 5.8s linear infinite}
     .mark-dot{animation:dot-pulse 4s ease-in-out infinite;transform-box:fill-box;transform-origin:center}
     @keyframes mark-breathe{0%,100%{transform:translateY(1px) rotate(-.35deg) scale(.993,1.006)}50%{transform:translateY(-2px) rotate(.35deg) scale(1.008,.995)}}
     @keyframes spine-flow{0%,100%{stroke-dashoffset:0;opacity:.72}50%{stroke-dashoffset:-26;opacity:1}}
-    @keyframes highlight-flow{to{stroke-dashoffset:-114}}
+    @keyframes ribbon-flow{to{stroke-dashoffset:-100}}
     @keyframes dot-pulse{0%,100%{transform:scale(.88);opacity:.72}50%{transform:scale(1.22);opacity:1}}
-    @media (prefers-reduced-motion:reduce){.mark-breathe,.mark-spine,.mark-highlight,.mark-dot{animation:none}}
+    @media (prefers-reduced-motion:reduce){.mark-breathe,.mark-spine,.mark-flow,.mark-dot{animation:none}}
   </style>
   <g class="mark-breathe" filter="url(#fluid-glow)">
     <g id="s-object" data-object="s-shape">
@@ -51,9 +58,9 @@
       <use href="#right-hook" fill="none" stroke="url(#mark-gradient)" stroke-width="7" stroke-linecap="round"/>
       <path d="M154 91L145 88L149 103Z" fill="url(#mark-gradient)"/>
       <path d="M126 121L119 137" fill="none" stroke="url(#mark-gradient)" stroke-width="6" stroke-linecap="round"/>
-      <path d="M121 128C145 140 157 159 159 184C161 205 151 224 134 236" fill="none" stroke="#fffbe9" stroke-opacity=".55" stroke-width="2.3" stroke-linecap="round" class="mark-highlight"/>
+      <path d="M112 118C88 113 59 95 51 73C44 53 54 35 73 31C92 28 107 43 111 65C115 84 111 103 112 118C145 124 172 149 177 181C182 212 168 240 140 255C113 270 76 272 55 254C36 238 36 213 55 190C66 175 80 163 95 152C103 146 109 132 112 118Z" pathLength="100" fill="none" stroke="#f8efff" stroke-opacity=".82" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" class="mark-flow"/>
     </g>
     <path id="line-object" data-object="line" d="M113 17C111 62 115 104 113 148C112 193 112 239 114 284" fill="none" stroke="url(#mark-gradient)" stroke-width="5.2" stroke-linecap="round" class="mark-spine" mask="url(#spine-weave-mask)"/>
-    <circle id="center-circle" data-object="center-circle" cx="113" cy="149" r="5.5" fill="#fff7d6" class="mark-dot"/>
+    <circle id="center-circle" data-object="center-circle" cx="113" cy="149" r="5.5" fill="#eadcff" class="mark-dot"/>
   </g>
 </svg>
