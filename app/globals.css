@@ -38,7 +38,8 @@
 .hero-film-grain { opacity:.08; background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.55'/%3E%3C/svg%3E"); animation:film-grain .8s steps(2) infinite; mix-blend-mode:soft-light; }
 .hero-vignette { background:radial-gradient(ellipse at 50% 42%,transparent 17%,rgb(10 8 18 / .12) 48%,rgb(8 7 13 / .72) 100%),linear-gradient(180deg,rgb(5 4 12 / .14),transparent 38%,rgb(5 4 10 / .82) 100%); }
 .hero-copy { filter:drop-shadow(0 3px 22px rgb(7 5 13 / .8)); }
-.hero-brand-mark { position:relative; width:min(37.375rem,35vw); aspect-ratio:598/569; margin-bottom:1rem; animation:hero-mark-hover 8s ease-in-out infinite; }
+.hero-brand-mark { position:relative; width:min(37.375rem,35vw); aspect-ratio:598/569; margin-bottom:1rem; filter:drop-shadow(0 2px 2px rgb(30 15 3 / .72)) drop-shadow(0 0 3px rgb(255 211 128 / .32)) drop-shadow(0 0 9px rgb(205 130 31 / .14)); animation:hero-mark-hover 8s ease-in-out infinite; }
+.hero-brand-mark::after { content:""; position:absolute; inset:0; pointer-events:none; background:linear-gradient(105deg,transparent 36%,rgb(255 248 218 / 0) 42%,rgb(255 248 213 / .82) 49%,rgb(255 213 128 / .34) 54%,transparent 63%); background-position:135% 0; background-size:260% 100%; -webkit-mask:url("/images/brand/sandabado-bird-logo.png") center/contain no-repeat; mask:url("/images/brand/sandabado-bird-logo.png") center/contain no-repeat; animation:hero-logo-shimmer 7.5s ease-in-out infinite; }
 .hero-brand-mark img { display:block; height:auto; width:100%; }
 .hero-title { color:#fff8ee; font-size:clamp(2.55rem,11vw,8rem); text-shadow:0 2px 6px rgb(13 7 20 / .7),0 0 38px rgb(82 35 118 / .34); }
 .hero-kicker { text-shadow:0 1px 16px rgb(0 0 0 / .9); }
@@ -61,6 +62,7 @@
 @keyframes film-grain { 0% { transform:translate(0,0); } 25% { transform:translate(-2%,1%); } 50% { transform:translate(1%,-2%); } 75% { transform:translate(2%,2%); } 100% { transform:translate(-1%,-1%); } }
 @keyframes hero-scroll { 0%,100% { transform:translateY(0); opacity:.65; } 50% { transform:translateY(6px); opacity:1; } }
 @keyframes hero-mark-hover { 0%,100% { transform:translate3d(0,1px,0) scale(.985); } 50% { transform:translate3d(0,-4px,0) scale(1.015); } }
+@keyframes hero-logo-shimmer { 0%,15% { background-position:135% 0; opacity:0; } 24% { opacity:.88; } 58% { opacity:.68; } 70%,100% { background-position:-85% 0; opacity:0; } }
 
 @media (max-width:640px) {
   .hero-poster,.hero-video { object-position:50% 50%; }
