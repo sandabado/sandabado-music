@@ -5,7 +5,7 @@ import { useEffect, useRef, useState } from "react"
 import { LightningCanvas } from "@/components/sandabado/lightning-canvas"
 import { StarFieldCanvas } from "@/components/sandabado/star-field-canvas"
 
-const poster = "/images/hero/sandabado-joshua-tree-hero-v2.jpg"
+const poster = "/images/hero/sandabado-three-trees-hero.jpg"
 
 export function CinematicHeroBackground({ videoSrc }: { videoSrc?: string }) {
   const video = useRef<HTMLVideoElement>(null)
