@@ -11,7 +11,7 @@ const links = [
   { href:"/video", label:"Video" },
   { href:"/tour", label:"Tour" },
   { href:"/store", label:"Store" },
-  { href:"/contact", label:"Contact" },
+  { href:"/booking", label:"Booking" },
 ]
 
 export function Navigation() {
