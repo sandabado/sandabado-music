@@ -18,26 +18,6 @@ type Bolt = {
   origin:Point
   repeats:number
 }
-type Coordinate = [number, number]
-type Curve = [Coordinate, Coordinate, Coordinate, Coordinate]
-
-const TREE_LIMBS:Curve[] = [
-  [[.5,.7],[.48,.55],[.45,.4],[.43,.23]],
-  [[.5,.65],[.51,.48],[.52,.32],[.49,.17]],
-  [[.51,.64],[.55,.5],[.57,.34],[.55,.17]],
-  [[.5,.61],[.57,.49],[.62,.39],[.65,.34]],
-  [[.48,.62],[.42,.52],[.37,.43],[.35,.36]],
-  [[.48,.58],[.43,.47],[.39,.35],[.4,.29]],
-  [[.52,.58],[.58,.45],[.61,.34],[.62,.28]],
-  [[.47,.57],[.42,.53],[.38,.5],[.35,.49]],
-]
-const TREE_CROWNS:Array<[number, number, number]> = [
-  [.49,.17,1], [.55,.17,.96], [.43,.23,.95], [.52,.26,.9],
-  [.57,.24,.92], [.62,.28,.96], [.65,.35,.92], [.59,.4,.88],
-  [.55,.34,.88], [.46,.3,.9], [.4,.29,.96], [.35,.36,1],
-  [.39,.4,.82], [.35,.49,.8], [.44,.39,.8],
-]
-
 const random = (min:number, max:number) => min + Math.random() * (max - min)
 const clamp = (value:number, min:number, max:number) => Math.max(min, Math.min(max, value))
 
@@ -140,7 +120,7 @@ function makeBolt(width:number, height:number):Bolt {
     leaderDuration:random(210, 340),
     totalDuration:random(740, 980),
     origin,
-    repeats:Math.random() < .3 ? Math.round(random(1, 2)) : 0,
+    repeats:Math.random() < .55 ? Math.round(random(1, 2)) : 0,
   }
 }
 
@@ -165,49 +145,6 @@ function traceChannel(context:CanvasRenderingContext2D, channel:Channel, reveal:
   }
 
   return true
-}
-
-export function maskTree(context:CanvasRenderingContext2D, width:number, height:number) {
-  const imageAspect = 16 / 9
-  const canvasAspect = width / height
-  const imageWidth = canvasAspect > imageAspect ? width : height * imageAspect
-  const imageHeight = canvasAspect > imageAspect ? width / imageAspect : height
-  const offsetX = (width - imageWidth) / 2
-  const offsetY = (height - imageHeight) / 2
-  const point = (x:number, y:number):Point => ({ x:offsetX + x * imageWidth, y:offsetY + y * imageHeight })
-
-  context.save()
-  context.globalCompositeOperation = "destination-out"
-  context.strokeStyle = "#000"
-  context.fillStyle = "#000"
-  context.lineCap = "round"
-  context.lineJoin = "round"
-
-  const trunkBottom = point(.5, .89)
-  const trunkTop = point(.5, .58)
-  context.beginPath()
-  context.moveTo(trunkBottom.x, trunkBottom.y)
-  context.bezierCurveTo(point(.49,.79).x, point(.49,.79).y, point(.51,.68).x, point(.51,.68).y, trunkTop.x, trunkTop.y)
-  context.lineWidth = imageWidth * .032
-  context.stroke()
-
-  for (const limb of TREE_LIMBS) {
-    const [start, controlOne, controlTwo, end] = limb.map(([x,y]) => point(x, y))
-    context.beginPath()
-    context.moveTo(start.x, start.y)
-    context.bezierCurveTo(controlOne.x, controlOne.y, controlTwo.x, controlTwo.y, end.x, end.y)
-    context.lineWidth = imageWidth * .018
-    context.stroke()
-  }
-
-  for (const [x, y, scale] of TREE_CROWNS) {
-    const center = point(x, y)
-    context.beginPath()
-    context.ellipse(center.x, center.y, imageWidth * .025 * scale, imageHeight * .048 * scale, 0, 0, Math.PI * 2)
-    context.fill()
-  }
-
-  context.restore()
 }
 
 export function LightningCanvas() {
@@ -240,7 +177,7 @@ export function LightningCanvas() {
 
     const clear = () => context.clearRect(0, 0, width, height)
 
-    const schedule = (delay = random(2600, 7200)) => {
+    const schedule = (delay = random(1400, 3200)) => {
       window.clearTimeout(timer)
       if (reducedMotion || document.hidden || !visible) return
       timer = window.setTimeout(() => {
@@ -293,8 +230,6 @@ export function LightningCanvas() {
       }
 
       context.restore()
-      maskTree(context, width, height)
-
       if (elapsed < bolt.totalDuration) {
         frame = window.requestAnimationFrame(draw)
         return
@@ -347,7 +282,7 @@ export function LightningCanvas() {
     intersectionObserver.observe(canvas)
     motionPreference.addEventListener("change", handleMotionChange)
     document.addEventListener("visibilitychange", handleVisibility)
-    schedule(900)
+    schedule(650)
 
     return () => {
       window.cancelAnimationFrame(frame)

@@ -1,7 +1,6 @@
 "use client"
 
 import { useEffect, useRef } from "react"
-import { maskTree } from "@/components/sandabado/lightning-canvas"
 
 type Star = {
   x:number
@@ -96,7 +95,6 @@ export function StarFieldCanvas() {
       }
 
       context.restore()
-      maskTree(context, width, height)
       if (!reducedMotion) frame = window.requestAnimationFrame(draw)
     }
 

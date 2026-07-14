@@ -56,8 +56,6 @@ export function CinematicHeroBackground({ videoSrc }: { videoSrc?: string }) {
     <div className="hero-clouds hero-clouds-near absolute inset-0" />
     <div className="hero-sky-temperature absolute inset-0" />
     <LightningCanvas />
-    <div className="hero-dust hero-dust-far absolute inset-0" />
-    <div className="hero-dust hero-dust-near absolute inset-0" />
     <div className="hero-film-grain absolute inset-0" />
     <div className="hero-vignette absolute inset-0" />
   </div>
