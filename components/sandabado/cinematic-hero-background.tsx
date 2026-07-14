@@ -13,8 +13,15 @@ export function CinematicHeroBackground({ videoSrc }: { videoSrc?: string }) {
 
   useEffect(() => {
     const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)")
-    if (reducedMotion.matches) video.current?.pause()
-  }, [])
+    const node = video.current
+    if (!node) return
+    const observer = new IntersectionObserver(([entry]) => {
+      if (entry.isIntersecting && !reducedMotion.matches) node.play().catch(() => undefined)
+      else node.pause()
+    }, { rootMargin:"120px" })
+    observer.observe(node)
+    return () => observer.disconnect()
+  }, [videoSrc])
 
   return <div className="hero-cinema absolute inset-0 -z-20 overflow-hidden bg-[#16101f]" aria-hidden="true">
     <Image
@@ -22,7 +29,7 @@ export function CinematicHeroBackground({ videoSrc }: { videoSrc?: string }) {
       alt=""
       fill
       priority
-      quality={90}
+      quality={82}
       sizes="100vw"
       className="hero-poster object-cover object-center"
     />

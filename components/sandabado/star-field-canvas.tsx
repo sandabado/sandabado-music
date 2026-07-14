@@ -38,6 +38,9 @@ export function StarFieldCanvas() {
     let height = 0
     let stars:Star[] = []
     let reducedMotion = motionPreference.matches
+    let visible = true
+    let lastDraw = 0
+    const frameInterval = 1000 / 12
 
     const buildStars = () => {
       const count = Math.round((width * height) / 12500)
@@ -58,7 +61,7 @@ export function StarFieldCanvas() {
 
     const resize = () => {
       const bounds = canvas.getBoundingClientRect()
-      const ratio = Math.min(window.devicePixelRatio || 1, 2)
+      const ratio = Math.min(window.devicePixelRatio || 1, 1.25)
       width = bounds.width
       height = bounds.height
       canvas.width = Math.max(1, Math.round(width * ratio))
@@ -68,6 +71,12 @@ export function StarFieldCanvas() {
     }
 
     const draw = (now:number) => {
+      if (!visible || document.hidden) return
+      if (!reducedMotion && now - lastDraw < frameInterval) {
+        frame = window.requestAnimationFrame(draw)
+        return
+      }
+      lastDraw = now
       context.clearRect(0, 0, width, height)
       const cycle = reducedMotion ? .72 : (now % 42000) / 42000
       const visibility = nightLevel(cycle)
@@ -94,19 +103,33 @@ export function StarFieldCanvas() {
     const handleMotionChange = (event:MediaQueryListEvent) => {
       reducedMotion = event.matches
       window.cancelAnimationFrame(frame)
-      frame = window.requestAnimationFrame(draw)
+      if (visible && !document.hidden) frame = window.requestAnimationFrame(draw)
+    }
+
+    const handleVisibility = () => {
+      window.cancelAnimationFrame(frame)
+      if (!document.hidden && visible) frame = window.requestAnimationFrame(draw)
     }
 
     resize()
     const resizeObserver = new ResizeObserver(resize)
     resizeObserver.observe(canvas)
+    const intersectionObserver = new IntersectionObserver(([entry]) => {
+      visible = entry.isIntersecting
+      window.cancelAnimationFrame(frame)
+      if (visible && !document.hidden) frame = window.requestAnimationFrame(draw)
+    }, { rootMargin:"120px" })
+    intersectionObserver.observe(canvas)
     motionPreference.addEventListener("change", handleMotionChange)
+    document.addEventListener("visibilitychange", handleVisibility)
     frame = window.requestAnimationFrame(draw)
 
     return () => {
       window.cancelAnimationFrame(frame)
       resizeObserver.disconnect()
+      intersectionObserver.disconnect()
       motionPreference.removeEventListener("change", handleMotionChange)
+      document.removeEventListener("visibilitychange", handleVisibility)
     }
   }, [])
 

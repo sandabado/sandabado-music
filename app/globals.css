@@ -7,7 +7,7 @@
 .star-field { background-color:var(--obsidian); background-image:radial-gradient(circle at 18% 18%,rgb(255 255 255 / .55) 0 1px,transparent 1.5px),radial-gradient(circle at 76% 22%,rgb(212 175 55 / .55) 0 1px,transparent 1.5px),radial-gradient(circle at 36% 70%,rgb(109 74 255 / .6) 0 1px,transparent 1.5px),radial-gradient(circle at 84% 76%,rgb(255 255 255 / .35) 0 .8px,transparent 1.5px); background-size:179px 179px,263px 263px,221px 221px,149px 149px; }
 .gold-rule { height:1px; background:linear-gradient(90deg,transparent,var(--gold),transparent); }
 .hero-stage { min-height:clamp(42rem,calc(100svh - 4rem),70rem); }
-.hero-cinema { animation:sky-temperature 42s ease-in-out infinite; }
+.hero-cinema { contain:paint; }
 .hero-poster { transform:none; }
 .hero-video { opacity:0; transition:opacity 1.8s ease; }
 .hero-video.is-ready { opacity:1; }
@@ -35,7 +35,7 @@
 .hero-dust-near { opacity:.55; filter:blur(1px); }
 .hero-dust-near::before { animation:dust-drift-near 17s linear infinite; background-size:120px 110px,190px 170px,520px 250px; }
 .hero-dust-near::after { animation:dust-drift-near 23s linear -7s infinite reverse; opacity:.32; transform:scale(1.2); }
-.hero-film-grain { opacity:.1; background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.55'/%3E%3C/svg%3E"); animation:film-grain .22s steps(2) infinite; mix-blend-mode:soft-light; }
+.hero-film-grain { opacity:.08; background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.55'/%3E%3C/svg%3E"); animation:film-grain .8s steps(2) infinite; mix-blend-mode:soft-light; }
 .hero-vignette { background:radial-gradient(ellipse at 50% 42%,transparent 17%,rgb(10 8 18 / .12) 48%,rgb(8 7 13 / .72) 100%),linear-gradient(180deg,rgb(5 4 12 / .14),transparent 38%,rgb(5 4 10 / .82) 100%); }
 .hero-copy { filter:drop-shadow(0 3px 22px rgb(7 5 13 / .8)); }
 .hero-title { color:#fff8ee; font-size:clamp(2.75rem,14vw,8rem); text-shadow:0 2px 6px rgb(13 7 20 / .7),0 0 38px rgb(82 35 118 / .34); }
@@ -51,7 +51,6 @@
 @keyframes cloud-breathe-near { from { transform:translate3d(0,.8%,0) scale(1); opacity:.17; } to { transform:translate3d(0,-1%,0) scale(1.035); opacity:.27; } }
 @keyframes mood-warm { 0%,100% { opacity:.12; } 23% { opacity:.7; } 48% { opacity:.2; } 72% { opacity:.04; } }
 @keyframes mood-cool { 0%,100% { opacity:.08; } 23% { opacity:.02; } 52% { opacity:.34; } 75% { opacity:.76; } }
-@keyframes sky-temperature { 0%,100% { filter:saturate(1.02) brightness(.98) hue-rotate(0deg); } 24% { filter:saturate(1.15) brightness(1.04) hue-rotate(-4deg); } 52% { filter:saturate(1.04) brightness(.97) hue-rotate(2deg); } 76% { filter:saturate(.92) brightness(.91) hue-rotate(8deg); } }
 @keyframes celestial-night { 0%,34%,100% { opacity:0; transform:translate3d(0,10px,0); } 48% { opacity:.18; } 66%,84% { opacity:.96; transform:translate3d(0,0,0); } 92% { opacity:.3; transform:translate3d(0,-3px,0); } }
 @keyframes venus-pulse { from { filter:brightness(.9); transform:scale(.92); } to { filter:brightness(1.22); transform:scale(1.12); } }
 @keyframes moon-float { from { translate:0 0; } to { translate:0 -5px; } }
@@ -63,6 +62,7 @@
 @media (max-width:640px) {
   .hero-poster,.hero-video { object-position:50% 50%; }
   .hero-dust { top:35%; }
+  .hero-clouds-near,.hero-dust-far::after,.hero-dust-near::after,.hero-film-grain { display:none; }
   .hero-title { letter-spacing:.035em; }
 }
 @media (prefers-reduced-motion: reduce) { *,*::before,*::after { scroll-behavior:auto!important; transition-duration:.01ms!important; animation-duration:.01ms!important; animation-iteration-count:1!important; } }
