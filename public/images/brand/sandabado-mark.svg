@@ -1,0 +1,53 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 300" role="img" aria-labelledby="title description">
+  <title id="title">Sandābādo S mark</title>
+  <desc id="description">A fluid, hand-drawn S wrapped around a slender central spine.</desc>
+  <defs>
+    <linearGradient id="mark-gradient" x1=".12" y1=".08" x2=".86" y2=".92">
+      <stop offset="0" stop-color="#fff8df"/>
+      <stop offset=".38" stop-color="#e8c755"/>
+      <stop offset=".7" stop-color="#cfa6ff"/>
+      <stop offset="1" stop-color="#f4cf67"/>
+      <animate attributeName="x1" values=".12;.28;.12" dur="9s" repeatCount="indefinite"/>
+      <animate attributeName="y2" values=".92;.72;.92" dur="9s" repeatCount="indefinite"/>
+    </linearGradient>
+    <filter id="fluid-glow" x="-70%" y="-55%" width="240%" height="210%" color-interpolation-filters="sRGB">
+      <feTurbulence type="fractalNoise" baseFrequency=".008 .019" numOctaves="2" seed="7" result="flow">
+        <animate attributeName="baseFrequency" values=".008 .019;.012 .014;.007 .021;.008 .019" dur="10s" repeatCount="indefinite"/>
+      </feTurbulence>
+      <feDisplacementMap in="SourceGraphic" in2="flow" scale="2.8" xChannelSelector="R" yChannelSelector="B" result="moved"/>
+      <feGaussianBlur in="moved" stdDeviation="5.5" result="blur"/>
+      <feFlood flood-color="#d9b6ff" flood-opacity=".78" result="glow-color"/>
+      <feComposite in="glow-color" in2="blur" operator="in" result="colored-glow"/>
+      <feGaussianBlur in="moved" stdDeviation="1.1" result="soft-edge"/>
+      <feMerge>
+        <feMergeNode in="colored-glow"/>
+        <feMergeNode in="soft-edge"/>
+        <feMergeNode in="moved"/>
+      </feMerge>
+    </filter>
+    <path id="upper-loop" d="M112 118C88 113 59 95 51 73C44 53 54 35 73 31C92 28 107 43 111 65C115 84 111 103 112 118"/>
+    <path id="lower-ribbon" d="M113 111C148 118 179 144 185 179C191 213 176 244 145 261C117 277 74 279 49 259C27 241 28 212 49 185C61 169 76 157 91 146L99 157C84 169 70 181 60 194C44 213 45 235 60 249C77 264 109 262 134 249C160 235 172 211 168 183C164 154 142 130 113 123Z"/>
+    <path id="right-hook" d="M132 55C151 61 162 77 153 96"/>
+  </defs>
+  <style>
+    .mark-breathe{transform-box:view-box;transform-origin:120px 150px;animation:mark-breathe 8s ease-in-out infinite}
+    .mark-spine{stroke-dasharray:274 18;animation:spine-flow 7s ease-in-out infinite}
+    .mark-highlight{stroke-dasharray:24 90;animation:highlight-flow 5.5s linear infinite}
+    .mark-dot{animation:dot-pulse 4s ease-in-out infinite;transform-box:fill-box;transform-origin:center}
+    @keyframes mark-breathe{0%,100%{transform:translateY(1px) rotate(-.35deg) scale(.993,1.006)}50%{transform:translateY(-2px) rotate(.35deg) scale(1.008,.995)}}
+    @keyframes spine-flow{0%,100%{stroke-dashoffset:0;opacity:.72}50%{stroke-dashoffset:-26;opacity:1}}
+    @keyframes highlight-flow{to{stroke-dashoffset:-114}}
+    @keyframes dot-pulse{0%,100%{transform:scale(.88);opacity:.72}50%{transform:scale(1.22);opacity:1}}
+    @media (prefers-reduced-motion:reduce){.mark-breathe,.mark-spine,.mark-highlight,.mark-dot{animation:none}}
+  </style>
+  <g class="mark-breathe" filter="url(#fluid-glow)">
+    <path d="M113 17C111 62 115 104 113 148C112 193 112 239 114 284" fill="none" stroke="url(#mark-gradient)" stroke-width="5.2" stroke-linecap="round" class="mark-spine"/>
+    <use href="#upper-loop" fill="none" stroke="url(#mark-gradient)" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"/>
+    <use href="#lower-ribbon" fill="url(#mark-gradient)" opacity=".96"/>
+    <use href="#right-hook" fill="none" stroke="url(#mark-gradient)" stroke-width="7" stroke-linecap="round"/>
+    <path d="M154 91L145 88L149 103Z" fill="url(#mark-gradient)"/>
+    <path d="M126 121L119 137" fill="none" stroke="url(#mark-gradient)" stroke-width="6" stroke-linecap="round"/>
+    <circle cx="113" cy="149" r="5.5" fill="#fff7d6" class="mark-dot"/>
+    <path d="M121 128C145 140 157 159 159 184C161 205 151 224 134 236" fill="none" stroke="#fffbe9" stroke-opacity=".55" stroke-width="2.3" stroke-linecap="round" class="mark-highlight"/>
+  </g>
+</svg>
