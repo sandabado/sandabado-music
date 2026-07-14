@@ -14,12 +14,17 @@ export const tracks: Track[] = [
   { number:12, title:"GREAT MYSTERY", duration:"5:44", style:"Atmospheric Finale", lyric:"Im a growing man..." },
   { number:13, title:"PARADISE", duration:"4:03", style:"Ambient Closure", lyric:"A cool breeze flows through my window..." },
 ]
-export const products = [
-  { id:"digital-album", name:"Digital Album", detail:"MP3 + FLAC · ∞ LOVE", priceCents:1500 },
-  { id:"infinity-vinyl", name:"∞ LOVE Vinyl", detail:"180g black vinyl · Ships Oct 2026", priceCents:5000 },
-  { id:"infinity-bundle", name:"Digital + Vinyl Bundle", detail:"Both formats · Limited edition", priceCents:6000 },
-  { id:"logo-tee", name:"Sandābādo T-Shirt", detail:"Logo tee · Black / Gold · Coming soon", priceCents:3500 },
-] as const
+export type SandabadoProduct = { id:string; name:string; detail:string; priceCents:number; category:"records" | "wear" | "objects"; image:string; badge?:string }
+export const products: SandabadoProduct[] = [
+  { id:"infinity-vinyl", name:"∞ LOVE Vinyl", detail:"180g black vinyl · Ships October 2026", priceCents:5000, category:"records", image:"/images/store/infinity-love-vinyl-v1.png", badge:"Limited to 100" },
+  { id:"signed-infinity-vinyl", name:"Signed ∞ LOVE Vinyl", detail:"Hand-signed 180g black vinyl · Numbered edition", priceCents:7500, category:"records", image:"/images/store/infinity-love-vinyl-v1.png", badge:"Collector's edition" },
+  { id:"infinity-cd", name:"∞ LOVE Compact Disc", detail:"Six-panel art wallet · Full album", priceCents:2000, category:"records", image:"/images/store/sandabado-objects-v1.png" },
+  { id:"digital-album", name:"Digital Album", detail:"MP3 + FLAC · ∞ LOVE", priceCents:1500, category:"records", image:"/images/sandabado-album.jpg" },
+  { id:"sandabado-eclipse-tee", name:"Eclipse T-Shirt", detail:"Washed black heavyweight cotton · Gold front print", priceCents:3500, category:"wear", image:"/images/store/sandabado-eclipse-tee-v1.png", badge:"New" },
+  { id:"sandabado-sticker-sheet", name:"Desert Signal Sticker Sheet", detail:"Six archival vinyl stickers · Weatherproof", priceCents:800, category:"objects", image:"/images/store/sandabado-objects-v1.png" },
+  { id:"infinity-love-poster", name:"∞ LOVE Art Poster", detail:"18 × 24 in. art print · Heavy uncoated stock", priceCents:3000, category:"objects", image:"/images/store/sandabado-objects-v1.png" },
+  { id:"infinity-bundle", name:"The First Chapter Set", detail:"Vinyl, CD, tee, poster, and sticker sheet", priceCents:12500, category:"objects", image:"/images/store/sandabado-merch-collection-v1.png", badge:"Best value" },
+]
 export const ticketTiers = [
   { id:"ga-ticket", name:"General Admission", detail:"Entry + Digital Album", priceCents:1100 },
   { id:"supporter-ticket", name:"Supporter", detail:"Entry + Vinyl + Feast", priceCents:11100 },

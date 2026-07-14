@@ -12,7 +12,8 @@
 .desert-signal-link:hover::before,.desert-signal-link:focus-visible::before { opacity:.5; transform:translateX(.22rem); }
 .desert-signal-link::after { content:""; position:absolute; bottom:-.55rem; left:50%; height:4px; width:4px; border-radius:999px; opacity:0; transform:translate(-50%,2px) scale(.5); background:var(--gold); box-shadow:0 0 9px 2px rgb(212 175 55 / .55); transition:transform .24s ease,opacity .24s ease; }
 .desert-signal-link.is-active::after { opacity:1; transform:translate(-50%,0) scale(1); }
-.star-field { background-color:var(--obsidian); background-image:radial-gradient(circle at 18% 18%,rgb(255 255 255 / .55) 0 1px,transparent 1.5px),radial-gradient(circle at 76% 22%,rgb(212 175 55 / .55) 0 1px,transparent 1.5px),radial-gradient(circle at 36% 70%,rgb(109 74 255 / .6) 0 1px,transparent 1.5px),radial-gradient(circle at 84% 76%,rgb(255 255 255 / .35) 0 .8px,transparent 1.5px); background-size:179px 179px,263px 263px,221px 221px,149px 149px; }
+.sandabado-nightscape,.star-field { background-color:#08090f; background-image:radial-gradient(ellipse at 18% 88%,rgb(var(--backdrop-accent,212,175,55) / .15),transparent 43%),linear-gradient(180deg,rgb(5 6 12 / .15),rgb(5 5 9 / .55) 48%,rgb(5 5 8 / .9) 100%),url("/images/backgrounds/sandabado-moonlit-desert-v1.png"); background-position:center,center,center; background-size:cover; }
+.star-field { background-attachment:fixed; }
 .gold-rule { height:1px; background:linear-gradient(90deg,transparent,var(--gold),transparent); }
 .hero-stage { min-height:clamp(42rem,calc(100svh - 4rem),70rem); }
 .hero-cinema { contain:paint; }
