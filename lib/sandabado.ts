@@ -19,7 +19,7 @@ export const products: SandabadoProduct[] = [
   { id:"infinity-vinyl", name:"∞ LOVE Vinyl", detail:"180g black vinyl · Ships October 2026", priceCents:5000, category:"records", image:"/images/store/infinity-love-vinyl-v1.png", badge:"Limited to 100" },
   { id:"signed-infinity-vinyl", name:"Signed ∞ LOVE Vinyl", detail:"Hand-signed 180g black vinyl · Numbered edition", priceCents:7500, category:"records", image:"/images/store/infinity-love-vinyl-v1.png", badge:"Collector's edition" },
   { id:"infinity-cd", name:"∞ LOVE Compact Disc", detail:"Six-panel art wallet · Full album", priceCents:2000, category:"records", image:"/images/store/sandabado-objects-v1.png" },
-  { id:"digital-album", name:"Digital Album", detail:"MP3 + FLAC · ∞ LOVE", priceCents:1500, category:"records", image:"/images/sandabado-album.jpg" },
+  { id:"digital-album", name:"Digital Album", detail:"MP3 + FLAC · ∞ LOVE", priceCents:1500, category:"records", image:"/images/releases/sandabado-infinity-love.png" },
   { id:"sandabado-eclipse-tee", name:"Eclipse T-Shirt", detail:"Washed black heavyweight cotton · Gold front print", priceCents:3500, category:"wear", image:"/images/store/sandabado-eclipse-tee-v1.png", badge:"New" },
   { id:"sandabado-sticker-sheet", name:"Desert Signal Sticker Sheet", detail:"Six archival vinyl stickers · Weatherproof", priceCents:800, category:"objects", image:"/images/store/sandabado-objects-v1.png" },
   { id:"infinity-love-poster", name:"∞ LOVE Art Poster", detail:"18 × 24 in. art print · Heavy uncoated stock", priceCents:3000, category:"objects", image:"/images/store/sandabado-objects-v1.png" },

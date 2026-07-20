@@ -167,7 +167,7 @@ export function LightningCanvas() {
 
     const resize = () => {
       const bounds = canvas.getBoundingClientRect()
-      const ratio = Math.min(window.devicePixelRatio || 1, 1.5)
+      const ratio = 1
       width = bounds.width
       height = bounds.height
       canvas.width = Math.max(1, Math.round(width * ratio))
@@ -177,7 +177,7 @@ export function LightningCanvas() {
 
     const clear = () => context.clearRect(0, 0, width, height)
 
-    const schedule = (delay = random(1400, 3200)) => {
+    const schedule = (delay = random(5000, 9000)) => {
       window.clearTimeout(timer)
       if (reducedMotion || document.hidden || !visible) return
       timer = window.setTimeout(() => {

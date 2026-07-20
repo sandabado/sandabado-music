@@ -2,8 +2,7 @@
 
 import Image from "next/image"
 import { useEffect, useRef, useState } from "react"
-import { LightningCanvas } from "@/components/sandabado/lightning-canvas"
-import { StarFieldCanvas } from "@/components/sandabado/star-field-canvas"
+import { HeroAtmosphere } from "@/components/sandabado/hero-atmosphere"
 
 const poster = "/images/hero/sandabado-three-trees-hero.jpg"
 
@@ -47,7 +46,7 @@ export function CinematicHeroBackground({ videoSrc }: { videoSrc?: string }) {
       onError={() => setVideoReady(false)}
     /> : null}
     <div className="hero-sky-grade absolute inset-0" />
-    <StarFieldCanvas />
+    <HeroAtmosphere />
     <div className="hero-celestial absolute inset-0">
       <span className="hero-venus" />
       <span className="hero-moon" />
@@ -55,7 +54,6 @@ export function CinematicHeroBackground({ videoSrc }: { videoSrc?: string }) {
     <div className="hero-clouds hero-clouds-far absolute inset-0" />
     <div className="hero-clouds hero-clouds-near absolute inset-0" />
     <div className="hero-sky-temperature absolute inset-0" />
-    <LightningCanvas />
     <div className="hero-film-grain absolute inset-0" />
     <div className="hero-vignette absolute inset-0" />
   </div>

@@ -6,7 +6,7 @@ import { StudioVideoShowcase } from "@/components/studios/video-showcase"
 type ReleaseStatus = "available" | "production"
 
 const releases = [
-  { title: "∞ Love", artist: "Sandabado", year: "2026", type: "Debut Album", tracks: 10, genre: "Ambient / Electronic / Devotional", status: "available" as const, description: "The debut album. Ten tracks of ambient, electronic, and devotional sound. Recorded in Morongo Valley with rammed earth acoustics.", icon: "🜄", color: "#2BA8A0", cover: "/images/sandabado-album.jpg" },
+  { title: "∞ Love", artist: "Sandabado", year: "2026", type: "Debut Album", tracks: 13, genre: "Soul Blues / Desert Rock", status: "available" as const, description: "The debut album. Thirteen tracks of soul blues and desert rock, recorded in Morongo Valley.", icon: "🜄", color: "#D4AF37", cover: "/images/releases/sandabado-infinity-love.png" },
   { title: "Whole Body Desert Vol. 1", artist: "Various Artists", year: "2026", type: "Compilation", tracks: 12, genre: "Compilation / Multi-genre", status: "production" as const, description: "Twelve tracks. Twelve artists. Each tuned to a frequency of the Living Earth.", icon: "🜄", color: "#2BA8A0" },
 ]
 
