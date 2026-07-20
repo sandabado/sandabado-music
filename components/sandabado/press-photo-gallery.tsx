@@ -5,7 +5,7 @@ import { ChevronLeft, ChevronRight, X } from "lucide-react"
 import { useEffect, useState } from "react"
 
 const photos = [
-  { src:"/images/sandabado-album.jpg", alt:"∞ LOVE album artwork" },
+  { src:"/images/releases/sandabado-infinity-love.png", alt:"∞ LOVE album artwork" },
   { src:"/images/hero/sandabado-joshua-tree-hero-v2.jpg", alt:"Joshua tree at dusk" },
   { src:"/images/hero/sandabado-three-trees-hero.jpg", alt:"High-desert horizon" },
   { src:"/images/hero/sandabado-open-desert-hero.png", alt:"Open desert sky" },

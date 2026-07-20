@@ -39,10 +39,10 @@ export function StarFieldCanvas() {
     let reducedMotion = motionPreference.matches
     let visible = true
     let lastDraw = 0
-    const frameInterval = 1000 / 12
+    const frameInterval = 1000 / 8
 
     const buildStars = () => {
-      const count = Math.round((width * height) / 12500)
+      const count = Math.round((width * height) / 24000)
       stars = Array.from({ length:count }, () => {
         const rareBrightStar = Math.random() > .91
         const colorRoll = Math.random()
@@ -60,7 +60,7 @@ export function StarFieldCanvas() {
 
     const resize = () => {
       const bounds = canvas.getBoundingClientRect()
-      const ratio = Math.min(window.devicePixelRatio || 1, 1.25)
+      const ratio = 1
       width = bounds.width
       height = bounds.height
       canvas.width = Math.max(1, Math.round(width * ratio))
@@ -90,7 +90,7 @@ export function StarFieldCanvas() {
         context.arc(star.x, star.y, star.radius, 0, Math.PI * 2)
         context.fillStyle = `rgb(${color} / ${alpha})`
         context.shadowColor = `rgb(${color} / ${alpha * .7})`
-        context.shadowBlur = star.radius > 1 ? 7 : 3
+        context.shadowBlur = star.radius > 1 ? 6 : 0
         context.fill()
       }
 
